@@ -1,0 +1,13 @@
+.TodoList{
+    justify-self: center;
+    align-self: center;
+    display: flex;
+    flex-direction: column;
+    width: 500px;   
+    margin: 0 auto;
+    text-align: center;
+    text-decoration: none;
+    list-style: none;
+    
+
+}
