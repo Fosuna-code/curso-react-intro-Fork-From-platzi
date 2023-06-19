@@ -1,20 +1,22 @@
 :root{
-  --p-color: #F6E3C5;
-  --s-color: black;
-  --a-color: #4CACBC;
-  --a-color2: #A0D995;
+  --p-color: #54269E;
+  --s-color: white;
+  --a-color: #008CBA;
+  --a-color2: black;
 }
 
 body{
-  background: rgb(246,227,197);
+  background-color: var(--p-color);
   /* background: linear-gradient(140deg,rgba(108,196,161,1) -200%,rgba(246,227,197,1) 50%, rgba(108,196,161,1) 200%); */
 }
 
 .App{
+  background-color:white ;
   display:grid;
   grid-template-rows: 100px 100px 1fr 100px;
   width: 100%;
   height: 100vh;
+  border: 1px solid white;
   /* background: rgb(246,227,197); */
   /* background: linear-gradient(140deg,rgba(108,196,161,1) -200%,rgba(246,227,197,1) 50%, rgba(108,196,161,1) 200%); */
 }

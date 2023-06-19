@@ -3,12 +3,12 @@ import "./TodoItem.css"
 
 function TodoItem(props){
     return(
-      <li className='TodoItem'>
+      <li className={`TodoItem ${props.completed && "active"}`} >
         <span className="">
           <AiOutlineCheck className='check'></AiOutlineCheck>
         </span>
         <p>{props.text}</p>
-        <span><AiOutlineDelete></AiOutlineDelete></span>
+        <span><AiOutlineDelete className="delete"></AiOutlineDelete></span>
       </li>
     );
   }

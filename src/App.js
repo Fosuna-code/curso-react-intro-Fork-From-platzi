@@ -7,8 +7,8 @@ import { CreateTodoButton } from './CreateTodoButton';
 
 const defaultTodos = [
   {text: 'Mi libro', completed: true , key:0},
-  {text: 'XDDDD', completed: true , key:1},
-  {text: 'Llorar', completed: true , key:2}
+  {text: 'XDDDD', completed: false , key:1},
+  {text: 'Llorar', completed: false , key:2}
 ]
 
 function App() {
