@@ -1,9 +1,15 @@
+import React from 'react';
+
+import useWindowSize from 'react-use/lib/useWindowSize'
+
+import Confetti from 'react-confetti'
 import './App.css';
-import {TodoCounter} from './TodoCounter'
 import { TodoSearch } from './TodoSearch';
 import {TodoList} from './TodoList'
 import {TodoItem} from './TodoItem'
+import {TodoCounter} from './TodoCounter'
 import { CreateTodoButton } from './CreateTodoButton';
+import {NewTodo} from './NewTodo'
 
 const defaultTodos = [
   {text: 'Mi libro', completed: true , key:0},
@@ -12,19 +18,36 @@ const defaultTodos = [
 ]
 
 function App() {
+  const [todos, setTodos] = React.useState(defaultTodos);
+  const [searchValue, setSearchValue] = React.useState('');
+  const [isnewTodoOpened,setIsNewTodoOpened] = React.useState(false);
+  const [validText,setValidText] = React.useState(true);
+  const [conffetti,setConffetti] = React.useState(false);
+  const todoMatch = todos.filter(todo => 
+    todo.text.toLowerCase().includes(searchValue.toLowerCase()) && todo);
+
+  const completedTodos = todos.filter(
+    todos => !!todos.completed
+  ).length;
+  const totalTodos = todos.length;
+  const { width, height } = useWindowSize();
+
   return (
     <div className='App'>
-      <TodoCounter completed={5} total={10}/>
-      <TodoSearch />
+      {!isnewTodoOpened && conffetti && <Confetti width={width} height={height}/>}
+      <TodoCounter completed={completedTodos} total={totalTodos} setConffetti={setConffetti}/>
+      <TodoSearch searchValue={searchValue} setSearchValue={setSearchValue} />
 
       <TodoList>
-        {defaultTodos.map(todo => (
-          <TodoItem key={todo.key} text={todo.text} completed={todo.completed}></TodoItem>
+        {todoMatch.map(todo => (
+          <TodoItem id={todo.key} key={todo.key} text={todo.text} completed={todo.completed} searchValue={searchValue} todos={todos} setTodos={setTodos}></TodoItem>
         ))}
         
         
       </TodoList>
-      <CreateTodoButton/>
+      <CreateTodoButton setIsNewTodoOpened={setIsNewTodoOpened} isnewTodoOpened={isnewTodoOpened}validText={validText}setValidText={setValidText} setConffetti={setConffetti}/>
+      <NewTodo opened={isnewTodoOpened} setIsNewTodoOpened={setIsNewTodoOpened} setTodos={setTodos} todos={todos}validText={validText}setValidText={setValidText}></NewTodo>
+      
     </div>
   );
 }
