@@ -14,16 +14,7 @@ function TodoItem(props){
   }
     return(
       <li className={`TodoItem ${props.completed && "active"}`} 
-      onClick={(e) =>{
-        console.log(e.target)
-        props.setTodos(props.todos.map(e =>{
-          if (e.key === props.id){
-            e.completed = !e.completed;
-          }
-          return e;
-        }))
-      }
-      }>
+      onClick={props.onCompleted}>
         <span className="">
           <AiOutlineCheck className='check'></AiOutlineCheck>
         </span>
@@ -32,8 +23,7 @@ function TodoItem(props){
           (e) => {
             e.stopPropagation();
 
-            props.setTodos(props.todos.filter(e =>e.key !== props.id))
-          
+            props.onDelete()          
           }
         }></AiOutlineDelete></span>
       </li>

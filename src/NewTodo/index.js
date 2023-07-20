@@ -2,7 +2,7 @@ import React from "react";
 import "./NewTodo.css"
 function NewTodo({
     opened,
-    setTodos,
+    saveTodos,
     setIsNewTodoOpened,
     todos,
     validText,
@@ -21,9 +21,9 @@ function NewTodo({
                         setValidText(false);
                         return;
                     }
-                    todos.push({text: newTodoText.value, completed: false, key:todos[todos.length - 1].key + 1});
+                    todos.push({text: newTodoText.value, completed: false, key:(todos[todos.length - 1]?.key + 1) || 0});
                     newTodoText.value= "";
-                    setTodos(todos);
+                    saveTodos(todos);
                     setValidText(true);
                     setIsNewTodoOpened(false);
                 }

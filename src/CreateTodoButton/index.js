@@ -3,7 +3,6 @@ import "./CreateTodoButton.css"
 function CreateTodoButton({
     setIsNewTodoOpened,
     isnewTodoOpened,
-    setConffetti,
     setValidText
 }){
     return(
@@ -11,7 +10,7 @@ function CreateTodoButton({
         onClick={() => {
             setIsNewTodoOpened(!isnewTodoOpened);
             setValidText(true);
-            setConffetti(false);
+            // setConffetti(false);
         }}
         >+</button>
     );
