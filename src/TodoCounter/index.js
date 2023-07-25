@@ -2,11 +2,16 @@ import useWindowSize from 'react-use/lib/useWindowSize'
 
 import Confetti from 'react-confetti'
 
-// import coffetti from './utils/confetti2.js'
 import React from 'react';
 import "./TodoCounter.css";
-export function TodoCounter({completed, total,loading,isnewTodoOpened}){
-    // const coffetti = new coffetti();
+import { TodoContext } from '../TodoContext';
+export function TodoCounter(){
+
+    const {completedTodos:completed,
+        totalTodos:total, 
+        loading, 
+        isnewTodoOpened,} = React.useContext(TodoContext)
+
     const { width, height } = useWindowSize();
 
     return(

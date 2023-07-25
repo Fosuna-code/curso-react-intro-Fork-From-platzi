@@ -7,7 +7,7 @@ function TodoError({setLoading}){
         <section className="ErrorContainer">
             <AiFillAlert className='ErrorIcon' fill="red"></AiFillAlert>
             <p>Algo salio mal!!!</p>
-            <button onClick={setLoading}>Reintentar</button>
+            <button onClick={setLoading(true)}>Reintentar</button>
         </section>
         
     );

@@ -1,13 +1,15 @@
 import React from "react";
 import "./NewTodo.css"
-function NewTodo({
-    opened,
-    saveTodos,
-    setIsNewTodoOpened,
-    todos,
-    validText,
-    setValidText
-}){
+import { TodoContext } from "../TodoContext";
+function NewTodo(){
+    const {
+        isnewTodoOpened:opened,
+        saveTodos,
+        setIsNewTodoOpened,
+        todos,
+        validText,
+        setValidText
+    } = React.useContext(TodoContext);
     return(
         <div className={`fullScreenNT ${!opened && "none"} `}>
              <form className="newTodo" onSubmit={

@@ -1,10 +1,12 @@
 import React from "react";
 import "./CreateTodoButton.css"
-function CreateTodoButton({
-    setIsNewTodoOpened,
-    isnewTodoOpened,
-    setValidText
-}){
+import { TodoContext } from "../TodoContext";
+function CreateTodoButton(){
+    const {
+        setIsNewTodoOpened,
+        isnewTodoOpened,
+        setValidText
+    } = React.useContext(TodoContext);
     return(
         <button className="CreateTodoButton"
         onClick={() => {

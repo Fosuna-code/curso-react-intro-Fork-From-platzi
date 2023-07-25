@@ -24,7 +24,7 @@ function TodoProvider({children}){
     const newTodos = [...todos];
     // console.log(key)
     const todoIndex = newTodos.findIndex(
-      (todo) => todo.text === key
+      (todo) => todo.key === key
     );
     newTodos[todoIndex].completed = !newTodos[todoIndex].completed;
     saveTodos(newTodos);
