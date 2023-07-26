@@ -1,0 +1,13 @@
+{
+  "files": {
+    "main.css": "/curso-react-intro-Fork-From-platzi/static/css/main.71b28ee1.css",
+    "main.js": "/curso-react-intro-Fork-From-platzi/static/js/main.94c6ff61.js",
+    "index.html": "/curso-react-intro-Fork-From-platzi/index.html",
+    "main.71b28ee1.css.map": "/curso-react-intro-Fork-From-platzi/static/css/main.71b28ee1.css.map",
+    "main.94c6ff61.js.map": "/curso-react-intro-Fork-From-platzi/static/js/main.94c6ff61.js.map"
+  },
+  "entrypoints": [
+    "static/css/main.71b28ee1.css",
+    "static/js/main.94c6ff61.js"
+  ]
+}
