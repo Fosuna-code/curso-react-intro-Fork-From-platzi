@@ -2,9 +2,9 @@
   "name": "platzi-intro-react-base",
   "version": "0.1.0",
   "dependencies": {
-    "react": "^18",
+    "react": "^17.0.2",
+    "react-dom": "^17.0.2",
     "react-confetti": "^6.1.0",
-    "react-dom": "^18",
     "react-icons": "^4.10.1",
     "react-scripts": "5.0.1",
     "react-use": "^17.4.0",
@@ -13,6 +13,7 @@
   "scripts": {
     "start": "react-scripts start",
     "build": "react-scripts build",
+    "deploy": "gh-pages -d build",
     "eject": "react-scripts eject"
   },
   "eslintConfig": {
@@ -31,5 +32,9 @@
       "last 1 firefox version",
       "last 1 safari version"
     ]
-  }
+  },
+  "devDependencies": {
+    "gh-pages": "^5.0.0"
+  },
+  "homepage": "https://Fosuna-code.github.io/curso-react-intro-Fork-From-platzi"
 }
