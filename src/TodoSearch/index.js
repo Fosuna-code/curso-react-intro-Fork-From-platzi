@@ -1,19 +1,20 @@
 import React from "react";
 import "./TodoSearch.css";
 import { TodoContext } from "../TodoContext";
-function TodoSearch(){
+class TodoSearch extends React.Component{
+    render(){
+        return(
+            <TodoContext.Consumer>
+                {(context) =>(
+                    <input className="TodoSearch" placeholder="Buscar ToDo"
+                    value={context.searchValue} onChange={(event) => {
+                       context.setSearchValue(event.target.value);
+                    }}></input>)}
+            </TodoContext.Consumer>
+            
+        );
+    }
     
-    const {
-        searchValue,
-        setSearchValue
-    } = React.useContext(TodoContext);
-
-    return(
-        <input className="TodoSearch" placeholder="Buscar ToDo"
-        value={searchValue} onChange={(event) => {
-           setSearchValue(event.target.value);
-        }}></input>
-    );
 }
 
 export {TodoSearch};

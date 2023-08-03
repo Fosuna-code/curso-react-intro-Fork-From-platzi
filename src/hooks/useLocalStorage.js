@@ -1,47 +1,66 @@
 import React from "react";
 
-
-function useLocalStorage(itemName, initialValue){
-    const [item,setItem] = React.useState(initialValue);
-    const [loading,setLoading] = React.useState(true); 
-    const [error, setError] = React.useState(false);
-
-    React.useEffect(() =>{
-
-      setTimeout(() => {
-        try {
-          const localStorageItem = localStorage.getItem(itemName);
-          let parsedItem;
-      
-          if(!localStorageItem){
-            localStorage.setItem(itemName, JSON.stringify(localStorageItem));
-            parsedItem = initialValue;
-          }else{
-            parsedItem = JSON.parse(localStorageItem);
-            setItem(parsedItem);
-          }
-          setLoading(false);
-        } catch (error) {
-          setLoading(false);
-          setError(true)
-        }
-      },2000)
-
-      
-    },[])
-    
-    const saveItem = (newItem) =>{
-      localStorage.setItem(itemName, JSON.stringify(newItem));
-      setItem(newItem);
-    } 
-  
-    return {
-      item,
-      saveItem,
-      error,
-      loading,
-      setLoading
+class UseLocalStorage extends React.Component{
+    state = {
+        item: this.props.initialValue,
+        loading: true ,
+        error: false
     }
-  }
 
-  export {useLocalStorage}; 
+    setItem =(item) =>{
+        this.setState({item: item});
+    }
+    setLoading = (loading) =>{
+        this.setState({loading: loading});
+    }
+    setError = (error) =>{
+        this.setState({error: error});
+    }
+    localStorageManage(){
+        setTimeout(() => {
+
+            try {
+              const localStorageItem = localStorage.getItem(this.props.itemName);
+              let parsedItem;
+          
+              if(!localStorageItem){
+                localStorage.setItem(this.props.itemName, JSON.stringify(localStorageItem));
+                parsedItem = this.props.initialValue;
+              }else{
+                parsedItem = JSON.parse(localStorageItem);
+                this.setItem(parsedItem);
+              }
+              this.setLoading(false);
+            } catch (error) {
+              this.setLoading(false);
+              this.setError(true)
+            }
+          },2000)
+        }
+
+        
+    componentDidMount(){
+        this.localStorageManage();
+    }
+
+    saveItem = (newItem) =>{
+        localStorage.setItem(this.props.itemName, JSON.stringify(newItem));
+        this.setItem(newItem);
+      } 
+    render(){
+      const {item, 
+            error,
+            loading} = this.state ;
+      const saveItem = this.saveItem;
+        return this.props.children({
+            item,
+            saveItem,
+            error,
+            loading
+          })
+      }
+      
+
+}
+
+export default UseLocalStorage;

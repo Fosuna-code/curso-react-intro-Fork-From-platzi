@@ -1,4 +1,4 @@
-import React from 'react';
+import React from "react";
 import { TodoSearch } from '../TodoSearch';
 import {TodoList} from '../TodoList'
 import {TodoItem} from '../TodoItem'
@@ -12,40 +12,35 @@ import { TodoContext } from '../TodoContext';
 import {TodoNotFound} from '../TodoNotFound';
 import {Modal} from '../Modal'
 
-function AppUi(){
-  const {
-    loading,
-    error,
-    todoMatch,
-    completeTodo,
-    deleteTodo,
-    setLoading,
-    searchValue,
-    todos,
-    saveTodos
-  } = React.useContext(TodoContext);
-    return(
-    <div className='App'>
-      {/* {!isnewTodoOpened && conffetti && <Confetti width={width} height={height}/>} */}
-      <TodoCounter />
-      <TodoSearch  />
 
-      <TodoList>
-        {loading && <><TodoLoading/> <TodoLoading/> <TodoLoading/></>}
-        {error && !loading && <TodoError setLoading={setLoading}/>}
-        {(!loading && todos.length === 0) && <TodoEmpty></TodoEmpty>}
-        {todoMatch.length === 0 && todos.length !==0 && <TodoNotFound/>}
-        {todoMatch.map(todo => (
-          <TodoItem  key={todo.key}  text={todo.text} completed={todo.completed} searchValue={searchValue} todos={todos} setTodos={saveTodos} onCompleted={() => completeTodo(todo.key)} onDelete={()=>deleteTodo(todo.text)}></TodoItem>
-        ))}
-      </TodoList>      
-      <CreateTodoButton />
-      <Modal>
-        <NewTodo></NewTodo>
-      </Modal>
+class AppUi extends React.Component{
+    render(){
       
-    </div>
-    );
+        return(
+          <TodoContext.Consumer>
+            {(context) => (
+                <div className='App'>
+                <TodoCounter/>
+                <TodoSearch />
+                <TodoList>
+                  {context.loading && <><TodoLoading/> <TodoLoading/> <TodoLoading/></>}
+                  {context.error && !context.loading && <TodoError/>}
+                  {!context.loading && context.todos.length == 0 && <TodoEmpty></TodoEmpty>}
+                  {context.todoMatch.length === 0 && context.todos.length !==0 && <TodoNotFound/>}
+                  {context.todoMatch.map(todo => (
+                    <TodoItem  key={todo.key}  text={todo.text} completed={todo.completed} searchValue={context.searchValue} todos={context.todos} setTodos={context.saveTodos} onCompleted={() => context.completeTodo(todo.key)} onDelete={()=>context.deleteTodo(todo.text)}></TodoItem>
+                  ))}
+                </TodoList>      
+                <CreateTodoButton />
+                <Modal>
+                  <NewTodo></NewTodo>
+                </Modal>
+            </div>
+              )}
+          </TodoContext.Consumer>
+        )
+        
+    }
 }
 
-export {AppUi}
+export  {AppUi}   

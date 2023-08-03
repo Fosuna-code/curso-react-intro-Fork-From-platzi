@@ -1,41 +1,38 @@
-import useWindowSize from 'react-use/lib/useWindowSize'
-
 import Confetti from 'react-confetti'
-
 import React from 'react';
 import "./TodoCounter.css";
 import { TodoContext } from '../TodoContext';
-export function TodoCounter(){
 
-    const {completedTodos:completed,
-        totalTodos:total, 
-        loading, 
-        isnewTodoOpened,} = React.useContext(TodoContext)
+export class TodoCounter extends React.Component{
+    render(){
+        return (
+            <TodoContext.Consumer>
+                {(context) =>
+                    (<h1 className="TodoCounter">
+                    {context.completedTodos !== context.totalTodos
+                    ?<div> Has completado <span>{context.completedTodos}</span> de <span>{context.totalTodos}</span> ToDos
 
-    const { width, height } = useWindowSize();
+                     </div>
+                    : context.totalTodos === 0 && !context.loading
+                    ? <div>No tienes ningun Todo, agrega uno para verlo aqui</div> 
 
-    return(
-        <h1 className="TodoCounter">
-            {completed !== total
-            ?<div> Has completado <span>{completed}</span> de <span>{total}</span> ToDos
-                
-             </div>
-            : total === 0 && !loading
-            ? <div>No tienes ningun Todo, agrega uno para verlo aqui</div> 
-                
-            : loading
-            ? <div>Cargando
-                <div className='ballContainer'>
-                    <div className='ball'></div>
-                    <div className='ball'></div>
-                    <div className='ball'></div>
-                </div>
-                </div> 
-        
-            :<div> Genial! has completado todos los Todos!🎉  
-                {!isnewTodoOpened && <Confetti width={width} height={height}/>}
-            </div>
-        }
-        </h1>
-    );
+                    : context.loading
+                    ? <div>Cargando
+                        <div className='ballContainer'>
+                            <div className='ball'></div>
+                            <div className='ball'></div>
+                            <div className='ball'></div>
+                        </div>
+                        </div> 
+
+                    :<div> Genial! has completado todos los Todos!🎉  
+                        {!context.isnewTodoOpened && <Confetti/>}
+                    </div>
+                    }
+                    </h1>)}
+            </TodoContext.Consumer>
+            
+        )
+    }
+    
 }

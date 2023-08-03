@@ -1,21 +1,25 @@
 import React from "react";
 import "./CreateTodoButton.css"
 import { TodoContext } from "../TodoContext";
-function CreateTodoButton(){
-    const {
-        setIsNewTodoOpened,
-        isnewTodoOpened,
-        setValidText
-    } = React.useContext(TodoContext);
-    return(
-        <button className="CreateTodoButton"
-        onClick={() => {
-            setIsNewTodoOpened(!isnewTodoOpened);
-            setValidText(true);
-            // setConffetti(false);
-        }}
-        >+</button>
-    );
+class CreateTodoButton extends React.Component{
+    render(){
+        
+        return(
+            <TodoContext.Consumer>
+                {(context) =>
+                    (<button className="CreateTodoButton"
+                    onClick={() => {
+                        context.setIsNewTodoOpened(!context.isnewTodoOpened);
+                        context.setValidText(true);
+                        // setConffetti(false);
+                    }}
+                    >+</button>)}
+            </TodoContext.Consumer>
+
+            
+        );
+    }
+    
 }
 
 export {CreateTodoButton};
